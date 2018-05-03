@@ -1,0 +1,9 @@
+    <header class="masthead text-center text-white" style="width: 106%;
+    float: center;
+    left: -40px;">
+    <div class="masthead-content">
+    	<div class="container">
+				<%= render :partial => 'users/profile', :locals => {:data => session[:current_user]} %>
+    	</div>
+    </div>
+  </header>

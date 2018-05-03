@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>One Page Wonder - Start Bootstrap Template</title>
+    <title>Github User Information</title>
 
 
     <!-- Custom fonts for this template -->
@@ -23,7 +23,9 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Welcome!</a>
+      <% if session[:access_token] %>
+        <a class="navbar-brand" href="#">Access Token: <%= session[:access_token] %></a>
+    	<% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -31,11 +33,11 @@
         <ul class="navbar-nav ml-auto">
 
           <li class="nav-item">
-          	<% if current_user %>
-	            <a class="nav-link" href="#">Log Out</a>
-          	<% else %>
-	            <a class="nav-link" href="#">Log In With GitHub</a>
-          	<% end %>
+            <% if session[:access_token] %>
+              <a class="nav-link" href="#">Log Out</a>
+            <% else %>
+              <a class="nav-link" href="#">Log In With GitHub</a>
+            <% end %>
           </li>
         </ul>
       </div>

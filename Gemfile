@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'faker'
 gem 'omniauth'
-# gem 'dotenv'
+gem 'rest-client', '~> 2.0.1'
 gem 'dotenv-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
 # Use Redis adapter to run Action Cable in production
@@ -38,6 +38,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+# gem "nokogiri", github: "sparklemotion/nokogiri", branch: "libxml2-2.9.1"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
