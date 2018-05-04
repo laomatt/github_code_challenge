@@ -18,14 +18,12 @@ class UsersController < ApplicationController
   def callback
     session_code = request.env['rack.request.query_hash']['code']
 
-    # ... and POST it back to GitHub
     result = RestClient.post('https://github.com/login/oauth/access_token',
                             {:client_id => ENV['CLIENT_ID'],
                              :client_secret => ENV['CLIENT_SECRET'],
                              :code => session_code},
                              :accept => :json)
 
-    # extract the token and granted scopes
     session[:access_token] = JSON.parse(result)['access_token']
 
     redirect_to :display_users
@@ -43,16 +41,11 @@ class UsersController < ApplicationController
                                      {:params => {:access_token => access_token},
                                       :accept => :json})
       rescue => e
-        # request didn't succeed because the token was revoked so we
-        # invalidate the token stored in the session and render the
-        # index page so that the user can start the OAuth flow again
-
         session[:access_token] = nil
         session[:current_user] = nil
         redirect_to :root
       end
 
-      # the request succeeded, so we check the list of current scopes
       if auth_result.headers.include? :x_oauth_scopes
         scopes = auth_result.headers[:x_oauth_scopes].split(', ')
       end
